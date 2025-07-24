@@ -17,7 +17,7 @@ public class StrongMyPasswordController {
     @GetMapping("/strongme")
         public ResponseEntity<String>StrongMe(@RequestBody PasswordDTO password){
         
-        String newPassword = strongMyPasswordService.Strengthner(password.password());
+        String newPassword = strongMyPasswordService.Strengthner(password);
         return ResponseEntity.ok().body(newPassword);
     }
 
