@@ -47,8 +47,8 @@ public String ChangeCharacters(String WeakPassword){
     char[] arrayChars = WeakPassword.toCharArray(); //transform String in array
 
     for (char c: arrayChars) {
-        if (dictionary.containsKey(c)) {
-        char lowChar = c;
+        char lowChar = Character.toLowerCase(c);
+        if (dictionary.containsKey(lowChar)) {
         List<String> substitutions = dictionary.get(lowChar);
         String newChar = substitutions.get(random.nextInt(substitutions.size()));
         StrongPassword.append(newChar);
@@ -86,9 +86,58 @@ public String ShuffleNumbersSequence(String WeakPassword){
     StrongPassword.append(numbersList.get(randomIndex));
     numbersList.remove(randomIndex);
 }
-    System.out.println(StrongPassword);
     return StrongPassword.toString();
 }
 
+public String MinOneUperCharacter(String WeakPassword){
+    char[] arrayChars = WeakPassword.toCharArray();
+      for (int i = 0; i < arrayChars.length; i++) {
+        if (Character.isLowerCase(arrayChars[i])) {
+            arrayChars[i] = Character.toUpperCase(arrayChars[i]);
+            return new String(arrayChars);
+        }
+    }
+
+    Random random = new Random();
+    char randomUpper = (char) (random.nextInt(26) + 'A');
+    return randomUpper + WeakPassword + randomUpper;
+
+}
+public String MinOneLowerCharacter(String WeakPassword){
+    char[] arrayChars = WeakPassword.toCharArray();
+      for (int i = 0; i < arrayChars.length; i++) {
+        if (Character.isUpperCase(arrayChars[i])) {
+            arrayChars[i] = Character.toLowerCase(arrayChars[i]);
+            return new String(arrayChars);
+        }
+    }
+
+    Random random = new Random();
+    char randomLower = (char) (random.nextInt(26) + 'a');
+    return randomLower + WeakPassword + randomLower;
+
+}
+
+public String MinOneNumber(String WeakPassword){
+    
+    Random random = new Random();
+    Long number = random.nextLong(1000,9999);
+    return WeakPassword + number;
+
+}
+
+public String MinLength(String WeekPassword, int minLength){
+    
+    StringBuilder result = new StringBuilder(WeekPassword);
+    Random random = new Random();
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
+
+    while (result.length() < minLength) {
+        char randomChar = chars.charAt(random.nextInt(chars.length()));
+        result.append(randomChar);
+    }
+
+    return result.toString();
+}
 
 }
