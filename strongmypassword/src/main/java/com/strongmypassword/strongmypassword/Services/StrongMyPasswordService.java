@@ -14,7 +14,8 @@ public class StrongMyPasswordService {
     PasswordStrengthner passwordStrengthner;
     
     public String Strengthner(String WeakPassword){
-        String StrogerPassword = passwordStrengthner.ChangeCharacters(WeakPassword);
+        String StrogerPassword = passwordStrengthner.ShuffleNumbersSequence(WeakPassword);
+        StrogerPassword = passwordStrengthner.ChangeCharacters(StrogerPassword);
         return StrogerPassword;
     }
 

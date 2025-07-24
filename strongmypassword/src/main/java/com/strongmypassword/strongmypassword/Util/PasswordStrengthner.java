@@ -1,5 +1,6 @@
 package com.strongmypassword.strongmypassword.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -57,6 +58,35 @@ public String ChangeCharacters(String WeakPassword){
         }
     }
 
+    return StrongPassword.toString();
+}
+
+public String ShuffleNumbersSequence(String WeakPassword){
+
+    StringBuilder StrongPassword = new StringBuilder(); //build a new password char by char 
+    Random random = new Random(); //generator of ramdom numbers to choice strong char
+    char[] arrayChars = WeakPassword.toCharArray(); //transform String in array
+    List<Character> numbersList = new ArrayList<>();;
+    for (char c : arrayChars){
+        if (Character.isDigit(c)) {
+            numbersList.add(c);
+        }
+        else{
+            while (!numbersList.isEmpty()) {
+                int randomIndex = random.nextInt(numbersList.size());
+                StrongPassword.append(numbersList.get(randomIndex));
+                numbersList.remove(randomIndex);
+            }
+        StrongPassword.append(c);
+        }     
+    }
+    //IF THE PASSWORD END WITH NUMBERS 
+    while (!numbersList.isEmpty()) {
+    int randomIndex = random.nextInt(numbersList.size());
+    StrongPassword.append(numbersList.get(randomIndex));
+    numbersList.remove(randomIndex);
+}
+    System.out.println(StrongPassword);
     return StrongPassword.toString();
 }
 
