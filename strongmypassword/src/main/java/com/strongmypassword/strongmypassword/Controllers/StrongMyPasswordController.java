@@ -23,7 +23,7 @@ public class StrongMyPasswordController {
 
     @GetMapping("/seedmypassword")
     public ResponseEntity<String> SeedMyPassword(@RequestBody SeedsDTO seeds){
-        String password = seeds.seeds().get(1);
+        String password = strongMyPasswordService.HashFromSeeds(seeds);
         return ResponseEntity.ok().body(password);
     }
     
