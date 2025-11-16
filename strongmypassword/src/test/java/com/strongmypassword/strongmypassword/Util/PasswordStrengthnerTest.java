@@ -34,7 +34,7 @@ class PasswordStrengthnerTest {
         String weak = "1234";
         String strong = strengthner.MinOneUperCharacter(weak);
 
-        // como não há minúsculas, cai no else → acrescenta 2 chars
+       
         assertTrue(strong.length() >= weak.length() + 2);
         assertTrue(strong.chars().anyMatch(Character::isUpperCase));
     }
